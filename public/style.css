@@ -3463,3 +3463,7 @@ img.sticky-media { cursor: pointer; touch-action: manipulation; }
 .shelf-update p { color: var(--text-muted); font-size: 13.5px; margin: 0 0 10px; }
 .sidebar-update-btn { display: block; width: calc(100% - 8px); margin: 8px 4px 0; background: none; border: 1px solid var(--divider); color: var(--text-muted); border-radius: 10px; padding: 7px 10px; font: inherit; font-size: 12.5px; cursor: pointer; }
 .sidebar-update-btn:hover { color: var(--text); background: var(--surface-hover); }
+.sidebar-version { margin: 6px 4px 0; text-align: center; font-size: 11.5px; color: var(--text-muted); opacity: .85; }
+.sidebar-version:empty, .about-version:empty { display: none; }
+.about-version { color: var(--text-muted); font-size: 13px; margin: 8px 0 0; }
+.version-sha { font-family: ui-monospace, Consolas, monospace; }

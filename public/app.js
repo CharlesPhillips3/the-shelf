@@ -1405,8 +1405,38 @@ const ABOUT_SHELF_TEXT = "The Shelf is a self-hosted hub that turns any spare co
 function openAboutOverlay() {
   el('#aboutText').textContent = ABOUT_SHELF_TEXT;
   el('#aboutOverlay').hidden = false;
+  showShelfVersion();
   checkShelfUpdate();
 }
+
+// ---------- Version label ----------
+// Shows which version this copy is: the date of its GitHub version plus the short commit id,
+// e.g. "Version 1.0.0 · Nov 13, 2026 · 6d7a7fc". Shown under "Check for updates" and in About.
+async function showShelfVersion() {
+  let v;
+  try { v = await fetch('/api/app/current', { cache: 'no-store' }).then(r => r.json()); } catch { return; }
+  const parts = [];
+  if (v.version) parts.push(`Version ${v.version}`);
+  const b = v.build;
+  if (b && b.date) parts.push(new Date(b.date).toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' }));
+  const sha = b && b.sha ? b.sha.slice(0, 7) : '';
+  const text = parts.join(' · ');
+  const fill = (node, long) => {
+    if (!node) return;
+    node.textContent = long && text ? `This copy: ${text}` : text;
+    if (sha) {
+      if (text) node.append(' · ');
+      const s = document.createElement('span');
+      s.className = 'version-sha';
+      s.textContent = b.git ? `${sha} (git)` : sha;
+      node.append(s);
+    }
+    if (b && b.message) node.title = b.message;
+  };
+  fill(el('#sidebarVersion'), false);
+  fill(el('#aboutVersion'), true);
+}
+showShelfVersion();
 
 // ---------- Updating from GitHub ----------
 // Checks github.com/hardwaremack-prog/the-shelf for a newer version and, on the computer

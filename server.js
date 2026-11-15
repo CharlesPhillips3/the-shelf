@@ -4814,6 +4814,30 @@ async function latestVersion() {
 }
 let updating = false;
 
+// Which version this copy is, without asking GitHub (for the label in the sidebar and About).
+// A git checkout has no .shelf-version.json, so read its commit straight from .git.
+function gitCheckoutVersion() {
+  try {
+    const gitDir = path.join(__dirname, '.git');
+    let head = fs.readFileSync(path.join(gitDir, 'HEAD'), 'utf8').trim();
+    if (head.startsWith('ref: ')) {
+      const ref = head.slice(5);
+      try { head = fs.readFileSync(path.join(gitDir, ...ref.split('/')), 'utf8').trim(); }
+      catch {
+        const packed = fs.readFileSync(path.join(gitDir, 'packed-refs'), 'utf8');
+        const line = packed.split('\n').find(l => l.endsWith(' ' + ref));
+        head = line ? line.split(' ')[0] : '';
+      }
+    }
+    return /^[0-9a-f]{40}$/.test(head) ? { sha: head, git: true } : null;
+  } catch { return null; }
+}
+app.get('/api/app/current', (req, res) => {
+  let pkgVersion = null;
+  try { pkgVersion = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8')).version; } catch { /* no package.json */ }
+  res.json({ version: pkgVersion, build: installedVersion() || gitCheckoutVersion() });
+});
+
 app.get('/api/app/version', async (req, res) => {
   const current = installedVersion();
   const gitCheckout = fs.existsSync(path.join(__dirname, '.git'));
