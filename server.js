@@ -4801,8 +4801,8 @@ const UPDATE_REPO = 'hardwaremack-prog/the-shelf';
 const VERSION_FILE = path.join(__dirname, '.shelf-version.json');
 function installedVersion() { try { return JSON.parse(fs.readFileSync(VERSION_FILE, 'utf8')); } catch { return null; } }
 let latestCache = { at: 0, data: null };
-async function latestVersion() {
-  if (latestCache.data && Date.now() - latestCache.at < 5 * 60 * 1000) return latestCache.data;
+async function latestVersion(fresh) {
+  if (!fresh && latestCache.data && Date.now() - latestCache.at < 5 * 60 * 1000) return latestCache.data;
   const r = await fetch(`https://api.github.com/repos/${UPDATE_REPO}/commits/main`, {
     headers: { 'User-Agent': 'TheShelf', Accept: 'application/vnd.github+json' }, signal: AbortSignal.timeout(10000)
   });
@@ -4842,7 +4842,7 @@ app.get('/api/app/version', async (req, res) => {
   const current = installedVersion();
   const gitCheckout = fs.existsSync(path.join(__dirname, '.git'));
   let latest = null, error = null;
-  try { latest = await latestVersion(); } catch (err) { error = `Couldn't reach GitHub (${err.message}).`; }
+  try { latest = await latestVersion(req.query.fresh === '1'); } catch (err) { error = `Couldn't reach GitHub (${err.message}).`; }
   res.json({
     current, latest, error, gitCheckout, canUpdate: isLocalRequest(req) && !gitCheckout,
     upToDate: !!(current && latest && current.sha === latest.sha)

@@ -1448,7 +1448,7 @@ async function checkShelfUpdate() {
   const msg = el('#shelfUpdateMsg'), btn = el('#shelfUpdateBtn');
   msg.textContent = 'Checking GitHub for a newer version\u2026'; btn.hidden = true;
   let v;
-  try { v = await fetch('/api/app/version').then(r => r.json()); } catch { msg.textContent = "Couldn't check for updates."; return; }
+  try { v = await fetch('/api/app/version?fresh=1', { cache: 'no-store' }).then(r => r.json()); } catch { msg.textContent = "Couldn't check for updates."; return; }
   const day = d => d ? new Date(d).toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' }) : '';
   if (v.error) { msg.textContent = v.error; return; }
   if (v.gitCheckout) { msg.textContent = 'This copy runs from a git checkout: update it with git pull.'; return; }
