@@ -169,7 +169,7 @@ const SHEET_MAX_COLS = 26;
 const SHEET_MAX_ROWS = 100;
 
 const state = {
-  view: 'shelf', // 'shelf' | 'portal' | 'notes' | 'draw' | 'docs' | 'sheets' | 'slides' | 'messages'
+  view: 'portal', // 'shelf' | 'portal' | 'notes' | 'draw' | 'docs' | 'sheets' | 'slides' | 'messages'
   category: 'Books',
   files: [],
   filtered: [],
@@ -6809,9 +6809,8 @@ async function initApp() {
     openLoginOverlay(true); // mandatory — nothing else to show until they log in
     return;
   }
-  renderToolNav();
-  loadCategories();
-  loadFiles();
+  // Open on Home (the quick dashboard) instead of a shelf.
+  selectTool('portal');
   loadNetworkInfo();
   loadPowerState();
   loadLocalhostOnlyState();
