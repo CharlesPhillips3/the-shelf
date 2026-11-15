@@ -18,7 +18,8 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 const SHARED_ROOT = path.join(__dirname, 'shared');
-const CATEGORIES = ['Pictures', 'Music', 'MIDI', 'Videos', 'Games', 'Programs', 'Books'];
+// Sidebar order: Books / PDFs at the top, Pictures at the bottom.
+const CATEGORIES = ['Books', 'Music', 'MIDI', 'Videos', 'Games', 'Programs', 'Pictures'];
 
 // Where zipped HTML games get unzipped to, so they can be played in-browser.
 // Lives inside shared/ but starts with a dot, so it's invisible to the

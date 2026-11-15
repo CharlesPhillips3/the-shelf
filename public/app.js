@@ -1,13 +1,13 @@
 // The MIDI shelf is listed and played like Music (public/midi.js plays the files).
 const isMusicShelf = c => c === 'Music' || c === 'MIDI';
 const CATEGORY_COLORS = {
-  Pictures: 'var(--cat-Pictures)',
+  Books: 'var(--cat-Books)',
   Music: 'var(--cat-Music)',
   MIDI: 'var(--cat-MIDI)',
   Videos: 'var(--cat-Videos)',
   Games: 'var(--cat-Games)',
   Programs: 'var(--cat-Programs)',
-  Books: 'var(--cat-Books)'
+  Pictures: 'var(--cat-Pictures)'
 };
 
 // The internal category key stays "Books" everywhere (it's the actual
@@ -170,7 +170,7 @@ const SHEET_MAX_ROWS = 100;
 
 const state = {
   view: 'shelf', // 'shelf' | 'portal' | 'notes' | 'draw' | 'docs' | 'sheets' | 'slides' | 'messages'
-  category: 'Pictures',
+  category: 'Books',
   files: [],
   filtered: [],
   slideshow: { index: 0, playing: true, timer: null, seconds: 7, kenBurns: true, musicStartedByUs: false },
