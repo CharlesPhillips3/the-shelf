@@ -17,7 +17,7 @@ subscriptions, no ads, and nothing uploaded anywhere — your files never leave 
 
 ![The Shelf](docs/screenshots/pictures.png)
 
-**👉 [Take the interactive tour](https://raw.githack.com/hardwaremack-prog/the-shelf/main/docs/the-shelf-tour.html)** — click around a mock-up of The Shelf and hover anything to see what it does.
+**👉 [Take the interactive tour](https://raw.githack.com/CharlesPhillips3/the-shelf/main/docs/the-shelf-tour.html)** — click around a mock-up of The Shelf and hover anything to see what it does.
 
 ## Why people love it
 
@@ -132,11 +132,11 @@ and how to fix it, rather than failing with a confusing error.
 
 **Windows** (PowerShell):
 ```
-irm https://raw.githubusercontent.com/hardwaremack-prog/the-shelf/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/CharlesPhillips3/the-shelf/main/install.ps1 | iex
 ```
 **Mac, Linux, Raspberry Pi** (Terminal):
 ```
-curl -fsSL https://raw.githubusercontent.com/hardwaremack-prog/the-shelf/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/CharlesPhillips3/the-shelf/main/install.sh | bash
 ```
 Each gets Node.js if it's missing, downloads the newest The Shelf from GitHub and opens the setup page below. Install page: [hardwaremack-prog.github.io/The-Shelf-Heltec-V4900mhzMesh/pc.html](https://hardwaremack-prog.github.io/The-Shelf-Heltec-V4900mhzMesh/pc.html). After that, **Check for updates** at the bottom of the sidebar keeps it current.
 

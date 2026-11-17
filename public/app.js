@@ -1439,7 +1439,7 @@ async function showShelfVersion() {
 showShelfVersion();
 
 // ---------- Updating from GitHub ----------
-// Checks github.com/hardwaremack-prog/the-shelf for a newer version and, on the computer
+// Checks github.com/CharlesPhillips3/the-shelf for a newer version and, on the computer
 // The Shelf runs on, installs it (shared/ and data/ are never touched) and restarts.
 async function checkShelfUpdate() {
   const box = el('#shelfUpdateBox');

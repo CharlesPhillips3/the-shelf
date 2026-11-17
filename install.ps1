@@ -1,12 +1,12 @@
 # The Shelf - one-line installer for Windows.
 # Run in PowerShell:
-#   irm https://raw.githubusercontent.com/hardwaremack-prog/the-shelf/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/CharlesPhillips3/the-shelf/main/install.ps1 | iex
 # It gets Node.js if it's missing (with winget), downloads the newest The Shelf from GitHub,
 # and opens the usual setup page in your browser (pick where it goes, start automatically, Install).
 # Your shelves and data in an existing install are never touched.
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
-$repo = 'hardwaremack-prog/the-shelf'
+$repo = 'CharlesPhillips3/the-shelf'
 Write-Host ''
 Write-Host 'The Shelf - installing' -ForegroundColor Yellow
 

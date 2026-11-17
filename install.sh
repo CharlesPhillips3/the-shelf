@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # The Shelf - one-line installer for Mac, Linux and Raspberry Pi.
 # Run in a terminal:
-#   curl -fsSL https://raw.githubusercontent.com/hardwaremack-prog/the-shelf/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/CharlesPhillips3/the-shelf/main/install.sh | bash
 # Downloads the newest The Shelf from GitHub and opens the usual setup page (pick where it goes,
 # start automatically, Install). Your shelves and data in an existing install are never touched.
 set -e
-REPO=hardwaremack-prog/the-shelf
+REPO=CharlesPhillips3/the-shelf
 echo
 echo "The Shelf - installing"
 if ! command -v node >/dev/null 2>&1; then

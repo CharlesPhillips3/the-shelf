@@ -4817,10 +4817,10 @@ app.all(/^\/api\/mesh(\/.*)?$/, async (req, res) => {
 
 // ---------------------------------------------------------------------------
 // Updating The Shelf from GitHub.
-// Downloads the newest copy of github.com/hardwaremack-prog/the-shelf, puts its files over this
+// Downloads the newest copy of github.com/CharlesPhillips3/the-shelf, puts its files over this
 // install (your shelves in shared/ and everything in data/ are never touched), installs any new
 // libraries, and restarts. Only from the computer The Shelf runs on.
-const UPDATE_REPO = 'hardwaremack-prog/the-shelf';
+const UPDATE_REPO = process.env.SHELF_UPDATE_REPO || 'CharlesPhillips3/the-shelf';
 // Where to ask GitHub. Only ever changed for testing (SHELF_GITHUB_API / SHELF_GITHUB_CODELOAD).
 const GITHUB_API = (process.env.SHELF_GITHUB_API || 'https://api.github.com').replace(/\/+$/, '');
 const GITHUB_CODELOAD = (process.env.SHELF_GITHUB_CODELOAD || 'https://codeload.github.com').replace(/\/+$/, '');
